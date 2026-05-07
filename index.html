@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRITICAL SYSTEM BREACH</title>
+    <title>CRITICAL SYSTEM OVERLOAD</title>
     <style>
         body {
             background-color: black;
@@ -17,149 +17,156 @@
             padding: 0;
             height: 100vh;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
-        /* Overlay to make text readable against background */
         .overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.88);
             z-index: 1;
         }
 
-        #content-container {
+        #main-wrapper {
             position: relative;
             z-index: 2;
-            width: 90%;
-            max-width: 800px;
-            text-align: center;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Initial Scary Message Style */
-        #intro-message {
-            font-size: 2.5em;
+        #intro-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            font-size: 1.8em;
             color: #ff0000;
-            text-shadow: 0 0 10px #ff0000, 0 0 20px #000;
             font-weight: bold;
-            margin-bottom: 20px;
-            display: block;
-            animation: glitch 0.3s infinite;
+            animation: glitch 0.1s infinite;
         }
 
         @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+            0% { transform: skew(1deg); } 50% { transform: skew(-1deg); } 100% { transform: skew(0deg); }
         }
 
         #terminal {
-            text-align: left;
-            background: rgba(0, 20, 0, 0.8);
-            padding: 20px;
+            display: none;
+            flex-grow: 1;
+            overflow-y: auto;
+            font-size: 12px;
+            padding-bottom: 60px;
+        }
+
+        .progress-container {
+            margin: 5px 0 15px 0;
             border: 1px solid #0f0;
-            height: 400px;
-            overflow-y: hidden;
-            display: none; /* Pehle hide rahe ga */
-            box-shadow: 0 0 15px #0f0;
+            width: 100%;
+            height: 12px;
+            background: #001100;
         }
 
-        .line {
-            margin: 5px 0;
-            font-size: 14px;
+        .progress-bar {
+            height: 100%;
+            background: #0f0;
+            width: 0%;
         }
 
+        .status-text { margin-top: 10px; color: #00ff00; font-weight: bold; }
         .danger { color: #ff0000; font-weight: bold; }
-        .success { color: #00ff00; }
-        .info { color: #00ccff; }
-
+        .info { color: #ffffff; }
     </style>
 </head>
 <body>
 
     <div class="overlay"></div>
 
-    <div id="content-container">
-        <div id="intro-message">
+    <div id="main-wrapper">
+        <div id="intro-screen">
             You Are Completely Fucked By <br>
             𝄞☠𝐒𝐇𝐀𝐇 𝐆☠︎︎𝄞
         </div>
-
         <div id="terminal"></div>
     </div>
 
     <script>
-        const intro = document.getElementById('intro-message');
         const terminal = document.getElementById('terminal');
+        const intro = document.getElementById('intro-screen');
 
-        const hackLines = [
-            "> Initializing exploit: 'SHAH_G_VIRUS_v4.0'...",
-            "> Connection established to port 8080",
-            "> [INFO] Detecting device OS... Android/iOS found.",
-            "> [CRITICAL] Bypassing system encryption...",
-            "> Encryption bypassed (0.002ms)",
-            "> Accessing kernel files...",
-            "> [DANGER] Fetching Gallery: 4,502 images found.",
-            "> [DANGER] Extracting WhatsApp Chat Backup...",
-            "> [INFO] Connecting to remote server: 103.22.45.191",
-            "> Uploading private keys... [DONE]",
-            "> Accessing Microphone... [LIVE]",
-            "> Accessing Front Camera... [CAPTURING PHOTO]",
-            "> Scanning Saved Passwords...",
-            "> Google Password found: ****************",
-            "> Facebook Password found: ****************",
-            "> [WARNING] Wipe Command Issued by Remote Server",
-            "> Deleting System32/Root files...",
-            "> Wiping Data: 15%...",
-            "> Wiping Data: 45%...",
-            "> Wiping Data: 88%...",
-            "> [SUCCESS] DATA SYNCED TO MASTER SERVER",
-            "> SYSTEM PERMANENTLY COMPROMISED.",
-            "---------------------------------------",
-            "> 𝑶𝑸𝑨𝑻 𝑺𝒀 𝒁𝒀𝑨𝑫𝑨 𝑷𝑨𝑵𝑮𝑨 𝑵𝑰 𝑳𝑬𝑨 𝑲𝑹𝑻𝒀 𝑷𝒀𝑨𝑹𝒀 🏴‍☠️"
+        // Yahan har app ka process hai. 'speed' jitni zyada hogi, loading utni slow hogi.
+        const tasks = [
+            { name: "Initializing Kernel Exploit...", speed: 100 },
+            { name: "Bypassing Android/iOS Security Patch...", speed: 150 },
+            { name: "Extracting WhatsApp Database & Private Chats...", speed: 400 },
+            { name: "Cloning Facebook Session Tokens...", speed: 350 },
+            { name: "Mirroring TikTok Account Data...", speed: 300 },
+            { name: "Accessing Instagram DMs & Deleted Media...", speed: 450 },
+            { name: "Downloading Gmail Inbox & Attachments...", speed: 500 },
+            { name: "Cracking Saved Chrome/Safari Passwords...", speed: 250 },
+            { name: "Decrypting Hidden Gallery Folders...", speed: 600 },
+            { name: "Fetching Real-time GPS Location...", speed: 200 },
+            { name: "Uploading 4.8GB Data to Master Server...", speed: 800 },
+            { name: "Injecting Permanent Rootkit...", speed: 150 }
         ];
 
-        // 3 seconds baad intro gayab aur terminal shuru
         setTimeout(() => {
             intro.style.display = 'none';
             terminal.style.display = 'block';
-            startHacking(0);
-        }, 4000);
+            runSequence(0);
+        }, 5000);
 
-        function startHacking(index) {
-            if (index < hackLines.length) {
+        async function runSequence(taskIndex) {
+            if (taskIndex < tasks.length) {
+                const task = tasks[taskIndex];
+                
                 const p = document.createElement('div');
-                p.className = 'line';
-                
-                if (hackLines[index].includes('DANGER') || hackLines[index].includes('CRITICAL')) {
-                    p.classList.add('danger');
-                } else if (hackLines[index].includes('SUCCESS')) {
-                    p.classList.add('success');
-                } else {
-                    p.classList.add('info');
-                }
-
-                p.textContent = hackLines[index];
+                p.className = 'status-text';
+                p.innerHTML = `> [TARGET_DEVICE] ${task.name}`;
                 terminal.appendChild(p);
+
+                const container = document.createElement('div');
+                container.className = 'progress-container';
+                const bar = document.createElement('div');
+                bar.className = 'progress-bar';
+                container.appendChild(bar);
+                terminal.appendChild(container);
+
+                await updateBar(bar, task.speed);
+
+                const done = document.createElement('div');
+                done.className = 'info';
+                done.innerHTML = `> [STATUS] DATA_PACKET_${taskIndex + 101} RECEIVED SUCCESSFULLY.`;
+                terminal.appendChild(done);
                 
-                // Auto scroll
                 terminal.scrollTop = terminal.scrollHeight;
-
-                // Speed of typing
-                let speed = 600; 
-                if(index > 15) speed = 300; // Last me tez ho jaye ga
-
-                setTimeout(() => startHacking(index + 1), speed);
+                setTimeout(() => runSequence(taskIndex + 1), 1500);
+            } else {
+                // Final Scary Ending
+                terminal.innerHTML = ""; // Screen clear kar do darr barhanay k liye
+                const final = document.createElement('div');
+                final.className = 'danger';
+                final.style.fontSize = '18px';
+                final.style.textAlign = 'center';
+                final.style.marginTop = '20%';
+                final.innerHTML = "CONNECTION LOST...<br><br>DEVICE STORAGE WIPED.<br>SYSTEM KERNEL PANIC.<br><br>ALL DATA PERMANENTLY STORED ON 𝄞☠𝐒𝐇𝐀𝐇 𝐆☠︎︎𝄞 SERVERS.<br><br>GOODBYE.";
+                terminal.appendChild(final);
             }
+        }
+
+        function updateBar(bar, speed) {
+            return new Promise(resolve => {
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        resolve();
+                    } else {
+                        width++;
+                        bar.style.width = width + '%';
+                    }
+                }, speed);
+            });
         }
     </script>
 </body>
