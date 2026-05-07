@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL SYSTEM BREACH</title>
+    <style>
+        body {
+            background-color: black;
+            background-image: url('https://i.postimg.cc/25qwRdz5/20260502-221905.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Overlay to make text readable against background */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        #content-container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* Initial Scary Message Style */
+        #intro-message {
+            font-size: 2.5em;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #000;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
+            animation: glitch 0.3s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        #terminal {
+            text-align: left;
+            background: rgba(0, 20, 0, 0.8);
+            padding: 20px;
+            border: 1px solid #0f0;
+            height: 400px;
+            overflow-y: hidden;
+            display: none; /* Pehle hide rahe ga */
+            box-shadow: 0 0 15px #0f0;
+        }
+
+        .line {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .danger { color: #ff0000; font-weight: bold; }
+        .success { color: #00ff00; }
+        .info { color: #00ccff; }
+
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <div id="content-container">
+        <div id="intro-message">
+            You Are Completely Fucked By <br>
+            𝄞☠𝐒𝐇𝐀𝐇 𝐆☠︎︎𝄞
+        </div>
+
+        <div id="terminal"></div>
+    </div>
+
+    <script>
+        const intro = document.getElementById('intro-message');
+        const terminal = document.getElementById('terminal');
+
+        const hackLines = [
+            "> Initializing exploit: 'SHAH_G_VIRUS_v4.0'...",
+            "> Connection established to port 8080",
+            "> [INFO] Detecting device OS... Android/iOS found.",
+            "> [CRITICAL] Bypassing system encryption...",
+            "> Encryption bypassed (0.002ms)",
+            "> Accessing kernel files...",
+            "> [DANGER] Fetching Gallery: 4,502 images found.",
+            "> [DANGER] Extracting WhatsApp Chat Backup...",
+            "> [INFO] Connecting to remote server: 103.22.45.191",
+            "> Uploading private keys... [DONE]",
+            "> Accessing Microphone... [LIVE]",
+            "> Accessing Front Camera... [CAPTURING PHOTO]",
+            "> Scanning Saved Passwords...",
+            "> Google Password found: ****************",
+            "> Facebook Password found: ****************",
+            "> [WARNING] Wipe Command Issued by Remote Server",
+            "> Deleting System32/Root files...",
+            "> Wiping Data: 15%...",
+            "> Wiping Data: 45%...",
+            "> Wiping Data: 88%...",
+            "> [SUCCESS] DATA SYNCED TO MASTER SERVER",
+            "> SYSTEM PERMANENTLY COMPROMISED.",
+            "---------------------------------------",
+            "> 𝑶𝑸𝑨𝑻 𝑺𝒀 𝒁𝒀𝑨𝑫𝑨 𝑷𝑨𝑵𝑮𝑨 𝑵𝑰 𝑳𝑬𝑨 𝑲𝑹𝑻𝒀 𝑷𝒀𝑨𝑹𝒀 🏴‍☠️"
+        ];
+
+        // 3 seconds baad intro gayab aur terminal shuru
+        setTimeout(() => {
+            intro.style.display = 'none';
+            terminal.style.display = 'block';
+            startHacking(0);
+        }, 4000);
+
+        function startHacking(index) {
+            if (index < hackLines.length) {
+                const p = document.createElement('div');
+                p.className = 'line';
+                
+                if (hackLines[index].includes('DANGER') || hackLines[index].includes('CRITICAL')) {
+                    p.classList.add('danger');
+                } else if (hackLines[index].includes('SUCCESS')) {
+                    p.classList.add('success');
+                } else {
+                    p.classList.add('info');
+                }
+
+                p.textContent = hackLines[index];
+                terminal.appendChild(p);
+                
+                // Auto scroll
+                terminal.scrollTop = terminal.scrollHeight;
+
+                // Speed of typing
+                let speed = 600; 
+                if(index > 15) speed = 300; // Last me tez ho jaye ga
+
+                setTimeout(() => startHacking(index + 1), speed);
+            }
+        }
+    </script>
+</body>
+</html>
